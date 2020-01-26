@@ -1,0 +1,306 @@
+{
+  "model": [
+    {
+      "id": "697d4fd5-934b-42b2-9b9a-5281864b38a8",
+      "name": "App name...",
+      "description": "App Description...",
+      "theme": {
+        "bgColor": "ffffff",
+        "textColor": "555555",
+        "bannerImage": ""
+      },
+      "tabs": [
+        {
+          "id": 1,
+          "header": "Employee",
+          "accordions": [
+            {
+              "id": 1,
+              "header": "Basic",
+              "parentId": "696df92a-d84e-9981-542f-c279ff34ef38",
+              "fields": [
+                {
+                  "type": "text",
+                  "icon": "fa fa-text-width",
+                  "label": "Text",
+                  "description": "Enter your name",
+                  "placeholder": "Enter your name",
+                  "className": "form-control",
+                  "subtype": "text",
+                  "regex": "",
+                  "handle": true,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "text-1579010947601"
+                },
+                {
+                  "type": "button",
+                  "icon": "fa-paper-plane",
+                  "subtype": "submit",
+                  "label": "Submit",
+                  "className": "btn btn-secondary btn-lg",
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "button-1579010996379",
+                  "toggle": false,
+                  "size": true
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "header": "Details",
+              "parentId": "93defeb3-0127-c7f6-e719-77d6b663cb4a",
+              "fields": [
+                {
+                  "type": "number",
+                  "label": "Number",
+                  "icon": "fa-html5",
+                  "description": "Age",
+                  "placeholder": "Enter your age",
+                  "className": "form-control",
+                  "value": "0",
+                  "min": 0,
+                  "max": 100,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "number-1579010958874"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "header": "Vications",
+          "accordions": [
+            {
+              "id": 1,
+              "header": "Your",
+              "parentId": "d51b784e-5fbe-d54b-e696-66a40ca93a85",
+              "attributes": [
+                {
+                  "type": "number",
+                  "label": "Number",
+                  "icon": "fa-html5",
+                  "description": "Age",
+                  "placeholder": "Enter your age",
+                  "className": "form-control",
+                  "value": "0",
+                  "min": 0,
+                  "max": 100,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "number-1579010965916"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "697d4fd5-934b-42b2-9b9a-5281864b38a0",
+      "name": "App name...",
+      "description": "App Description...",
+      "theme": {
+  
+        "bgColor": "ffffff",
+        "textColor": "555555",
+        "bannerImage": ""
+      },
+      "tabs": [
+        {
+          "id": 1,
+          "header": "Employee",
+          "modelId": "697d4fd5-934b-42b2-9b9a-5281864b38a9",
+          "accordions": [
+            {
+              "id": 1,
+              "header": "Basic",
+              "parentId": 1,
+              "fields": [
+                {
+                  "type": "text",
+                  "icon": "fa fa-text-width",
+                  "label": "Name",
+                  "description": "Enter your name",
+                  "placeholder": "Enter your name",
+                  "className": "form-control",
+                  "subtype": "text",
+                  "regex": "",
+                  "handle": true,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "text-1579518061106",
+                  "toggle": false
+                },
+                {
+                  "type": "phone",
+                  "icon": "fa-phone",
+                  "label": "Phone",
+                  "description": "Enter your phone",
+                  "placeholder": "Enter your phone",
+                  "className": "form-control",
+                  "subtype": "text",
+                  "regex": "^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$",
+                  "errorText": "Please enter a valid phone number",
+                  "handle": true,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "phone-1579518153527"
+                },
+                {
+                  "type": "email",
+                  "icon": "fa-envelope",
+                  "required": true,
+                  "label": "Email",
+                  "description": "Enter your email",
+                  "placeholder": "Enter your email",
+                  "className": "form-control",
+                  "subtype": "text",
+                  "regex": "^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+).([a-zA-Z]{2,5})$",
+                  "errorText": "Please enter a valid email",
+                  "handle": true,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "email-1579518156010"
+                },
+                {
+                  "type": "textarea",
+                  "icon": "fa fa-text-height",
+                  "label": "Address",
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "textarea-1579518066751",
+                  "toggle": false
+                }
+              ],
+              "modelId": "697d4fd5-934b-42b2-9b9a-5281864b38a9"
+            },
+            {
+              "id": 2,
+              "header": "Details",
+              "parentId": "697d4fd5-934b-42b2-9b9a-5281864b38a9",
+              "fields": [
+                {
+                  "type": "text",
+                  "icon": "fa fa-text-width",
+                  "label": "Martial Status",
+                  "description": "Enter your name",
+                  "placeholder": "Martial Status",
+                  "className": "form-control",
+                  "subtype": "text",
+                  "regex": "",
+                  "handle": true,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "text-1579518167642",
+                  "toggle": false
+                },
+                {
+                  "type": "date",
+                  "icon": "fa-calendar",
+                  "label": "Birth Date",
+                  "placeholder": "Date",
+                  "className": "form-control",
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "date-1579518206527",
+                  "toggle": false
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "header": "Related",
+              "parentId": "697d4fd5-934b-42b2-9b9a-5281864b38a9",
+              "fields": [
+                {
+                  "type": "number",
+                  "label": "Salary",
+                  "icon": "fa-html5",
+                  "description": "Age",
+                  "placeholder": "Enter your age",
+                  "className": "form-control",
+                  "value": "0",
+                  "min": 0,
+                  "max": 100,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "number-1579518237275",
+                  "toggle": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "header": "Vacation",
+          "accordions": [
+            {
+              "id": 1,
+              "header": "Summary",
+              "parentId": "697d4fd5-934b-42b2-9b9a-5281864b38a9",
+              "fields": [
+                {
+                  "type": "text",
+                  "icon": "fa fa-text-width",
+                  "label": "Vacation Name",
+                  "description": "Enter your name",
+                  "placeholder": "Enter your name",
+                  "className": "form-control",
+                  "subtype": "text",
+                  "regex": "",
+                  "handle": true,
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "text-1579518318863",
+                  "toggle": false
+                },
+                {
+                  "type": "datetime-range",
+                  "icon": "fa fa-calendar-check-o",
+                  "label": "Vacation Period",
+                  "placeholder": "Date Time",
+                  "className": "form-control",
+                  "parent": "",
+                  "relatedTo": "",
+                  "category": "regular-controls",
+                  "material": "false",
+                  "name": "datetime-range-1579518345383",
+                  "toggle": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

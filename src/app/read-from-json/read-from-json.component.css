@@ -1,0 +1,76 @@
+.example-full-width {
+  width: 100%;
+}
+/* legend {
+  background-color: #4587cd;
+  color: #fff;
+  padding: 3px 6px;
+} */
+mat-form-field {
+  margin-right: 12px;
+}
+.output {
+  font: 1rem "Fira Sans", sans-serif;
+}
+
+input {
+  margin: 0.4rem;
+}
+
+.custom-control-label {
+  cursor: pointer;
+}
+
+fieldset {
+  border: 1px solid #ddd !important;
+  margin: 0;
+  xmin-width: 0;
+  padding: 10px;
+  position: relative;
+  border-radius: 4px;
+  background-color: #f7f7f759;
+  padding-left: 10px !important;
+}
+
+legend {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  width: 35%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 5px 5px 10px;
+  background-color: #ffffff;
+  color: #007bff;
+}
+
+.link {
+  opacity: 0.5;
+}
+.link:hover {
+  opacity: 1;
+}
+.panel-body {
+  margin: 10px !important;
+}
+.panel-title {
+  position: relative;
+  padding-left: 15px;
+}
+
+.panel-title::after {
+  content: "\f106";
+  color: #fff;
+  top: -2px;
+  left: -5px;
+  position: absolute;
+  font-family: "FontAwesome";
+}
+
+.panel-title[aria-expanded="flase"]::after {
+  content: "\f106";
+}
+
+.panel-title[aria-expanded="true"]::after {
+  content: "\f107";
+}

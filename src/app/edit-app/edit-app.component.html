@@ -1,0 +1,2498 @@
+<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">build</mat-icon>
+      &nbsp; Builder
+    </ng-template>
+    <div *ngIf="model && !report" class="pt-5 white-bg">
+      <div class="spacer30"></div>
+      <div class="row">
+        <div class="col-3">
+          <accordion [isAnimated]="true">
+            <accordion-group heading="Color" [panelClass]="customClass">
+              <div class="row">
+                <label class="col-8">Background Color</label>
+                <input
+                  class="colorpick col-4"
+                  type="color"
+                  name="bgColor"
+                  [(ngModel)]="model.theme.bgColor"
+                />
+              </div>
+              <div class="row">
+                <label class="col-8">Text Color</label>
+                <input
+                  class="colorpick col-4"
+                  type="color"
+                  name="textColor"
+                  [(ngModel)]="model.theme.textColor"
+                />
+              </div>
+            </accordion-group>
+
+            <accordion-group heading="Form Controls" [isOpen]="true">
+              <!--a draggable element-->
+              <div
+                class="fields"
+                *ngFor="
+                  let item of fieldModels
+                    | categoryfilter: 'category':'regular-controls'
+                "
+              >
+                <div
+                  class="field pointer shadow-bg"
+                  [dndDraggable]="item"
+                  [dndEffectAllowed]="'copy'"
+                  (dndEnd)="onDragEnd($event)"
+                >
+                  <i [ngClass]="item.icon" class="fa pull-left"></i>
+                  <h5>{{ item.label }}</h5>
+                </div>
+              </div>
+            </accordion-group>
+
+            <accordion-group heading="Headings" [isOpen]="true">
+              <!--a draggable element-->
+              <div
+                class="fields"
+                *ngFor="
+                  let item of fieldModels
+                    | categoryfilter: 'category':'headings'
+                "
+              >
+                <div
+                  class="field pointer shadow-bg"
+                  [dndDraggable]="item"
+                  [dndEffectAllowed]="'copy'"
+                  (dndEnd)="onDragEnd($event)"
+                >
+                  <i [ngClass]="item.icon" class="fa pull-left"></i>
+                  <h5>{{ item.label }}</h5>
+                </div>
+              </div>
+            </accordion-group>
+            <accordion-group heading="Tag" [isOpen]="true">
+              <!--a draggable element-->
+              <div
+                class="fields"
+                *ngFor="
+                  let item of fieldModels | categoryfilter: 'category':'tag'
+                "
+              >
+                <div
+                  class="field pointer shadow-bg"
+                  [dndDraggable]="item"
+                  [dndEffectAllowed]="'copy'"
+                  (dndEnd)="onDragEnd($event)"
+                >
+                  <i [ngClass]="item.icon" class="fa pull-left"></i>
+                  <h5>{{ item.label }}</h5>
+                </div>
+              </div>
+            </accordion-group>
+
+            <accordion-group heading="Typography" [isOpen]="true">
+              <!--a draggable element-->
+              <div
+                class="fields"
+                *ngFor="
+                  let item of fieldModels
+                    | categoryfilter: 'category':'typography'
+                "
+              >
+                <div
+                  class="field pointer shadow-bg"
+                  [dndDraggable]="item"
+                  [dndEffectAllowed]="'copy'"
+                  (dndEnd)="onDragEnd($event)"
+                >
+                  <i [ngClass]="item.icon" class="fa pull-left"></i>
+                  <h5>{{ item.label }}</h5>
+                </div>
+              </div>
+            </accordion-group>
+
+            <accordion-group heading="Material Form Field" [isOpen]="true">
+              <!--a draggable element-->
+              <div
+                class="fields"
+                *ngFor="
+                  let item of fieldModels
+                    | categoryfilter: 'category':'angular-material'
+                "
+              >
+                <div
+                  class="field pointer shadow-bg"
+                  [dndDraggable]="item"
+                  [dndEffectAllowed]="'copy'"
+                  (dndEnd)="onDragEnd($event)"
+                >
+                  <i [ngClass]="item.icon" class="fa pull-left"></i>
+                  <h5>{{ item.label }}</h5>
+                </div>
+                <hr style="background-color: #555;" *ngIf="item.divider" />
+              </div>
+            </accordion-group>
+
+            <accordion-group heading="Material Datepicker" [isOpen]="true">
+              <!--a draggable element-->
+              <div
+                class="fields"
+                *ngFor="
+                  let item of fieldModels
+                    | categoryfilter: 'category':'angular-material-datepicker'
+                "
+              >
+                <div
+                  class="field pointer shadow-bg"
+                  [dndDraggable]="item"
+                  [dndEffectAllowed]="'copy'"
+                  (dndEnd)="onDragEnd($event)"
+                >
+                  <i [ngClass]="item.icon" class="fa pull-left"></i>
+                  <h5>{{ item.label }}</h5>
+                </div>
+              </div>
+            </accordion-group>
+
+            <accordion-group heading="Material Datepicker" [isOpen]="true">
+              <!--a draggable element-->
+              <div
+                class="fields"
+                *ngFor="
+                  let item of fieldModels
+                    | categoryfilter: 'category':'angular-material-datatable'
+                "
+              >
+                <div
+                  class="field pointer shadow-bg"
+                  [dndDraggable]="item"
+                  [dndEffectAllowed]="'copy'"
+                  (dndEnd)="onDragEnd($event)"
+                >
+                  <i [ngClass]="item.icon" class="fa pull-left"></i>
+                  <h5>{{ item.label }}</h5>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        </div>
+        <div class="col-9">
+          <div
+            class="form-group"
+            style="margin-bottom: 0px !important; padding: 30px 60px 5px 60px;background-color: #f4f4f473;"
+            [style.backgroundColor]="model.theme.bgColor"
+            [style.color]="model.theme.textColor"
+          >
+            <h2>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="model.name"
+              />
+            </h2>
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="model.description"
+            />
+            <hr style="background-color: #007bff !important; " />
+            Model Number :
+            <span style="color: #007bff !important; ">{{ model.id }}</span>
+          </div>
+
+          <div class="form-group text-right">
+            <i
+              class="fa fa-pencil-square link"
+              aria-hidden="true"
+              style="text-align: right;font-size: 30px;cursor: pointer;"
+              data-toggle="modal"
+              data-target="#exampleModalCenterTab"
+            ></i>
+            &nbsp;
+            <i
+              class="fa fa-plus-square link"
+              aria-hidden="true"
+              style="text-align: right;font-size: 30px;cursor: pointer;"
+              (click)="addTab()"
+            ></i>
+          </div>
+
+          <mat-tab-group (selectedTabChange)="selectedTab($event)">
+            <mat-tab *ngFor="let tab of model.tabs">
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">arrow_right</mat-icon>
+
+                {{ tab.header }}
+              </ng-template>
+
+              <!--a dropzone-->
+              <!--to allow dropping content that is not [dndDraggable] set dndAllowExternal to true-->
+
+              <div
+                class="panel-group"
+                id="accordion"
+                role="tablist"
+                aria-multiselectable="true"
+              >
+                <div
+                  class="link"
+                  style="text-align: right;font-size: 30px;cursor: pointer;"
+                >
+                  <a>
+                    <i
+                      class="fa fa-plus"
+                      aria-hidden="true"
+                      (click)="addHeader()"
+                    ></i
+                  ></a>
+                </div>
+                <div
+                  *ngFor="let data of tab.accordions; let i = index"
+                  class="panel panel-default"
+                  style="padding:0.2rem 0.2rem"
+                >
+                  <div
+                    class="panel-heading bg-secondary "
+                    style="padding:0.8rem 0.8rem"
+                    role="tab"
+                    [id]="'heading' + data.id"
+                  >
+                    <div class="row">
+                      <div class="col-11">
+                        <h4>
+                          <a
+                            style="text-decoration: none;"
+                            role="button"
+                            class="text-white panel-title "
+                            data-toggle="collapse"
+                            data-parent="#accordion"
+                            [href]="'#collapse' + data.id"
+                            aria-expanded="true"
+                            [attr.aria-controls]="'collapse' + data.id"
+                          >
+                            {{ data.header }}
+                          </a>
+                        </h4>
+                      </div>
+                      <div class="col-1">
+                        <i
+                          class="fa fa-pencil link"
+                          aria-hidden="true"
+                          style="text-align: right;color: #fff; cursor: pointer;"
+                          (click)="clickHeader(i)"
+                          data-toggle="modal"
+                          data-target="#exampleModalCenter"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    [id]="'collapse' + data.id"
+                    class="panel-collapse collapse"
+                    role="tabpanel"
+                    [attr.aria-labelledby]="'heading' + data.id"
+                  >
+                    <div class="panel-body">
+                      <section
+                        dndDropzone
+                        (dndDragover)="onDragover($event)"
+                        (dndDrop)="onDrop($event, data.fields)"
+                        class="dndDropArea"
+                        [ngClass]="{ empty: data.fields.length == 0 }"
+                        [style.backgroundColor]="model.theme.bgColor"
+                        [style.color]="model.theme.textColor"
+                      >
+                        <div
+                          class="field"
+                          *ngFor="let item of data.fields; let i = index"
+                          (dndStart)="onDragStart($event)"
+                          (dndCanceled)="onDragCanceled($event)"
+                          (dndMoved)="onDragged(item, data.fields, 'move')"
+                          [dndEffectAllowed]="'all'"
+                          [dndDraggable]="item"
+                        >
+                          <div class="row form-group">
+                            <div class="col-1">
+                              <i
+                                class="fa fa-ellipsis-v dndHandle"
+                                dndHandle
+                              ></i>
+                            </div>
+                            <div class="col-7">
+                              <div *ngIf="item.type == 'hr'">
+                                <hr
+                                  style="background-color: #ccc; height: 1px  ;"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+
+                              <div *ngIf="item.type == 'h1'">
+                                <h1
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </h1>
+                              </div>
+
+                              <div *ngIf="item.type == 'h2'">
+                                <h2
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </h2>
+                              </div>
+
+                              <div *ngIf="item.type == 'h3'">
+                                <h3
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </h3>
+                              </div>
+
+                              <div *ngIf="item.type == 'h4'">
+                                <h4
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </h4>
+                              </div>
+
+                              <div *ngIf="item.type == 'h5'">
+                                <h5
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </h5>
+                              </div>
+
+                              <div *ngIf="item.type == 'h6'">
+                                <h6
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </h6>
+                              </div>
+
+                              <div *ngIf="item.type == 'paragraph'">
+                                <p
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </p>
+                              </div>
+                              <div *ngIf="item.type == 'pre'">
+                                <pre
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                  >{{ item.label }}</pre
+                                >
+                              </div>
+                              <div *ngIf="item.type == 'quote'">
+                                <q
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                  >{{ item.label }}</q
+                                >
+                              </div>
+
+                              <div *ngIf="item.type == 'bQuote'">
+                                <blockquote
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </blockquote>
+                              </div>
+
+                              <div *ngIf="item.type == 'span'">
+                                <span
+                                  class="form-text"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  {{ item.label }}
+                                </span>
+                              </div>
+
+                              <div *ngIf="item.type == 'text'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  placeholder="{{ item.placeholder }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+                              <div *ngIf="item.type == 'email'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <input
+                                  type="email"
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  placeholder="{{ item.placeholder }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+                              <div *ngIf="item.type == 'phone'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <input
+                                  type="tel"
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  placeholder="{{ item.placeholder }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+                              <div *ngIf="item.type == 'number'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <input
+                                  type="number"
+                                  Number="true"
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  min="{{ item.min }}"
+                                  max="{{ item.max }}"
+                                  placeholder="{{ item.placeholder }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+                              <div *ngIf="item.type == 'date'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <input
+                                  [bsConfig]="bsConfig"
+                                  bsDatepicker
+                                  readonly
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+                              <div *ngIf="item.type == 'datetime-range'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <input
+                                  [bsConfig]="bsConfig"
+                                  bsDaterangepicker
+                                  readonly
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+                              <div *ngIf="item.type == 'textarea'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  placeholder="{{ item.placeholder }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                </textarea>
+                              </div>
+                              <div *ngIf="item.type == 'file'">
+                                <label
+                                  >{{ item.label }} (File can't be uploaded
+                                  right now)</label
+                                >
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <input
+                                  type="file"
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  placeholder="{{ item.placeholder }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                                <small class="form-text text-danger"
+                                  >(File can't be uploaded right now)</small
+                                >
+                              </div>
+                              <div *ngIf="item.type == 'autocomplete'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <select
+                                  class="form-control"
+                                  id="{{ item.name }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                >
+                                  <option
+                                    *ngFor="let v of item.values"
+                                    [value]="v.value"
+                                    >{{ v.label }}</option
+                                  >
+                                </select>
+                                <!-- <small class="form-text text-muted">{{item.description}}</small> -->
+                              </div>
+                              <div *ngIf="item.type == 'checkbox'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <div
+                                  *ngFor="let v of item.values"
+                                  class="inline-form-group"
+                                >
+                                  <label class="cust-check-bx">
+                                    <input
+                                      type="checkbox"
+                                      [value]="v.value"
+                                      name="{{ item.name }}"
+                                      (click)="toggleValue(v)"
+                                      [attr.relatedTo]="item.relatedTo"
+                                    />
+                                    {{ v.label }}
+                                    <span class="checkmark"></span>
+                                  </label>
+                                </div>
+                              </div>
+                              <div *ngIf="item.type == 'radio'">
+                                <label>{{ item.label }}</label>
+                                <label *ngIf="item.required" class="text-danger"
+                                  >*</label
+                                >
+                                <div
+                                  *ngFor="let v of item.values"
+                                  class="inline-form-group"
+                                >
+                                  <label class="cust-check-bx">
+                                    <input
+                                      type="radio"
+                                      [value]="v.value"
+                                      name="{{ item.name }}"
+                                      [attr.relatedTo]="item.relatedTo"
+                                    />
+                                    {{ v.label }}
+                                    <span class="checkmark"></span>
+                                  </label>
+                                </div>
+                              </div>
+                              <div
+                                *ngIf="item.type == 'button'"
+                                class="btn-cont text-center"
+                              >
+                                <input
+                                  type="{{ item.subtype }}"
+                                  (click)="submit()"
+                                  value="{{ item.label }}"
+                                  class="{{ item.className }}"
+                                  id="{{ item.name }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+                              <div
+                                *ngIf="item.type == 'button-with-reset'"
+                                class="btn-cont text-center"
+                              >
+                                <input
+                                  type="{{ item.subtype }}"
+                                  (click)="submit()"
+                                  value="{{ item.label }}"
+                                  class="{{ item.className }}"
+                                  id="{{ item.name }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                                <input
+                                  type="{{ item.nestedtype }}"
+                                  value="{{ item.sublabel }}"
+                                  class="btn btn-link btn-md"
+                                  id="{{ item.name }}"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                              </div>
+
+                              <div *ngIf="item.type == 'text-material'">
+                                <mat-form-field
+                                  class="example-full-width"
+                                  [hideRequiredMarker]="item.hideRequiredMarker"
+                                  [appearance]="item.appearance"
+                                  [hintLabel]="item.hintLabel"
+                                >
+                                  <input
+                                    matInput
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-icon matSuffix>title</mat-icon>
+                                  <mat-error>{{ item.errorText }}</mat-error>
+                                </mat-form-field>
+                              </div>
+
+                              <div *ngIf="item.type == 'text-length-material'">
+                                <mat-form-field
+                                  class="example-full-width"
+                                  [hideRequiredMarker]="item.hideRequiredMarker"
+                                  [appearance]="item.appearance"
+                                  [hintLabel]="item.hintLabel"
+                                >
+                                  <input
+                                    matInput
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-icon matSuffix>lock</mat-icon>
+                                  <mat-error>{{ item.errorText }}</mat-error>
+                                </mat-form-field>
+                              </div>
+
+                              <div *ngIf="item.type == 'textarea-material'">
+                                <mat-form-field
+                                  class="example-full-width"
+                                  [hideRequiredMarker]="item.hideRequiredMarker"
+                                  [appearance]="item.appearance"
+                                  [hintLabel]="item.hintLabel"
+                                >
+                                  <textarea
+                                    matInput
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  ></textarea>
+                                  <mat-icon matSuffix>text_fields</mat-icon>
+                                  <mat-error>{{ item.errorText }}</mat-error>
+                                </mat-form-field>
+                              </div>
+
+                              <div
+                                *ngIf="item.type == 'textarea-length-material'"
+                              >
+                                <mat-form-field
+                                  class="example-full-width"
+                                  [hideRequiredMarker]="item.hideRequiredMarker"
+                                  [appearance]="item.appearance"
+                                  [hintLabel]="item.hintLabel"
+                                >
+                                  <textarea
+                                    matInput
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  ></textarea>
+                                  <mat-icon matSuffix>lock</mat-icon>
+                                  <mat-error>{{ item.errorText }}</mat-error>
+                                </mat-form-field>
+                              </div>
+
+                              <div *ngIf="item.type == 'email-material'">
+                                <mat-form-field
+                                  class="example-full-width"
+                                  [hideRequiredMarker]="item.hideRequiredMarker"
+                                  [appearance]="item.appearance"
+                                  [hintLabel]="item.hintLabel"
+                                >
+                                  <input
+                                    matInput
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-icon matSuffix>email</mat-icon>
+                                  <mat-error>{{ item.errorText }}</mat-error>
+                                </mat-form-field>
+                              </div>
+
+                              <div *ngIf="item.type == 'phone-material'">
+                                <mat-form-field
+                                  class="example-full-width"
+                                  [hideRequiredMarker]="item.hideRequiredMarker"
+                                  [appearance]="item.appearance"
+                                  [hintLabel]="item.hintLabel"
+                                >
+                                  <input
+                                    matInput
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-icon matSuffix>phone</mat-icon>
+                                  <mat-error>{{ item.errorText }}</mat-error>
+                                </mat-form-field>
+                              </div>
+
+                              <div *ngIf="item.type == 'number-material'">
+                                <mat-form-field
+                                  class="example-full-width"
+                                  [hideRequiredMarker]="item.hideRequiredMarker"
+                                  [appearance]="item.appearance"
+                                  [hintLabel]="item.hintLabel"
+                                >
+                                  <input
+                                    matInput
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    min="{{ item.min }}"
+                                    max="{{ item.max }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-icon matSuffix>filter_9_plus</mat-icon>
+                                  <mat-error>{{ item.errorText }}</mat-error>
+                                </mat-form-field>
+                              </div>
+                              <div *ngIf="item.type == 'clearable-material'">
+                                <mat-form-field
+                                  class="example-full-width"
+                                  [hideRequiredMarker]="item.hideRequiredMarker"
+                                  [appearance]="item.appearance"
+                                  [hintLabel]="item.hintLabel"
+                                >
+                                  <input
+                                    matInput
+                                    type="text"
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                    [(ngModel)]="item.value"
+                                  />
+                                  <button
+                                    mat-button
+                                    *ngIf="item.value"
+                                    matSuffix
+                                    mat-icon-button
+                                    aria-label="Clear"
+                                    (click)="item.value = ''"
+                                  >
+                                    <mat-icon>close</mat-icon>
+                                  </button>
+
+                                  <mat-icon matSuffix>clear_all</mat-icon>
+                                  <mat-error>{{ item.errorText }}</mat-error>
+                                </mat-form-field>
+                              </div>
+
+                              <div
+                                *ngIf="item.type == 'basic-datepicker-material'"
+                              >
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                    matInput
+                                    [matDatepicker]="picker"
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="picker"
+                                  ></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                              </div>
+                              <div
+                                *ngIf="
+                                  item.type == 'start-date-datepicker-material'
+                                "
+                              >
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                    matInput
+                                    [matDatepicker]="picker"
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="picker"
+                                  ></mat-datepicker-toggle>
+                                  <mat-datepicker
+                                    #picker
+                                    startView="year"
+                                    [startAt]="startDate"
+                                  ></mat-datepicker>
+                                </mat-form-field>
+                              </div>
+
+                              <div
+                                *ngIf="
+                                  item.type ==
+                                  'min-max-validation-datepicker-material'
+                                "
+                              >
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                    matInput
+                                    [matDatepicker]="picker"
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="picker"
+                                  ></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                              </div>
+
+                              <div
+                                *ngIf="
+                                  item.type ==
+                                  'touch-ui-date-datepicker-material'
+                                "
+                              >
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                    matInput
+                                    [matDatepicker]="picker"
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="picker"
+                                  ></mat-datepicker-toggle>
+                                  <mat-datepicker
+                                    touchUi
+                                    #picker
+                                  ></mat-datepicker>
+                                </mat-form-field>
+                              </div>
+
+                              <div
+                                *ngIf="
+                                  item.type ==
+                                  'open-method-date-datepicker-material'
+                                "
+                              >
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                    matInput
+                                    [matDatepicker]="picker"
+                                    id="{{ item.name }}"
+                                    placeholder="{{ item.placeholder }}"
+                                    [attr.relatedTo]="item.relatedTo"
+                                  />
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <button
+                                  class="float-right"
+                                  mat-raised-button
+                                  (click)="picker.open()"
+                                >
+                                  Open
+                                </button>
+                              </div>
+
+                              <div *ngIf="item.type == 'datatable-material'">
+                                <table
+                                  mat-table
+                                  [dataSource]="dataSource"
+                                  matSort
+                                >
+                                  <ng-container
+                                    *ngFor="let column of returnColumns(item)"
+                                    matColumnDef="{{ column.value }}"
+                                  >
+                                    <th
+                                      mat-header-cell
+                                      *matHeaderCellDef
+                                      mat-sort-header
+                                    >
+                                      {{ column.label }}
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                      {{ element[column.value] }}
+                                    </td>
+                                  </ng-container>
+
+                                  <tr
+                                    mat-header-row
+                                    *matHeaderRowDef="displayedColumns"
+                                  ></tr>
+                                  <tr
+                                    mat-row
+                                    *matRowDef="
+                                      let row;
+                                      columns: displayedColumns
+                                    "
+                                  ></tr>
+                                </table>
+
+                                <mat-paginator
+                                  [pageSizeOptions]="[5, 10, 20]"
+                                  showFirstLastButtons
+                                ></mat-paginator>
+                              </div>
+                            </div>
+                            <div class="col-4">
+                              <i
+                                *ngIf="item.toggle"
+                                (click)="item.toggle = false"
+                                class="fa fa-chevron-up pull-right"
+                              ></i>
+                              <i
+                                *ngIf="!item.toggle"
+                                (click)="item.toggle = true"
+                                class="fa fa-chevron-down pull-right"
+                              ></i>
+                              <i
+                                (click)="removeField(i, data)"
+                                class="fa fa-trash pull-right"
+                              ></i>
+                            </div>
+                          </div>
+                          <!-- toggle option -->
+                          <div *ngIf="item.toggle" class="toggle-Wrapper">
+                            <fieldset
+                              *ngIf="item.category == 'angular-material'"
+                            >
+                              <legend>
+                                Angular Material
+                              </legend>
+                              <div class="form-group">
+                                <label>Hide required marker</label>
+                                <i
+                                  *ngIf="item.hideRequiredMarker"
+                                  (click)="item.hideRequiredMarker = false"
+                                  class="fa fa-toggle-on red"
+                                ></i>
+                                <i
+                                  *ngIf="!item.hideRequiredMarker"
+                                  (click)="item.hideRequiredMarker = true"
+                                  class="fa fa-toggle-off"
+                                ></i>
+                                <!-- <span class="pull-right ucfirst">{{ item.type }}</span> -->
+                              </div>
+
+                              <div class="form-group">
+                                <label>Appearance</label>
+                                <div style="display: flex;">
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="legacy"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      value="legacy"
+                                      name="appearance"
+                                      [(ngModel)]="item.appearance"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="legacy"
+                                      >Legacy</label
+                                    >
+                                  </div>
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="standard"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      value="standard"
+                                      name="appearance"
+                                      [(ngModel)]="item.appearance"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="standard"
+                                      >Standard</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="fill"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      value="fill"
+                                      name="appearance"
+                                      [(ngModel)]="item.appearance"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="fill"
+                                      >Fill</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="outline"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      value="outline"
+                                      name="appearance"
+                                      [(ngModel)]="item.appearance"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="outline"
+                                      >Outline</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <label>Hint Label</label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  [(ngModel)]="item.hintLabel"
+                                />
+                              </div>
+
+                              <div
+                                class="form-group"
+                                *ngIf="
+                                  item.type == 'text-length-material' ||
+                                  item.type == 'textarea-length-material'
+                                "
+                              >
+                                <label>Max Length</label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  [(ngModel)]="item.maxLength"
+                                />
+                              </div>
+                            </fieldset>
+
+                            <fieldset
+                              *ngIf="
+                                item.type ==
+                                'min-max-validation-datepicker-material'
+                              "
+                            >
+                              <legend>
+                                Datepicker with min & max validation
+                              </legend>
+                              <div class="form-group">
+                                <div class="form-group">
+                                  <label>Min Date </label>
+
+                                  <input
+                                    class="form-control"
+                                    type="date"
+                                    [(ngModel)]="item.minDate"
+                                  />
+                                </div>
+                                <div class="form-group">
+                                  <label>Max Date </label>
+                                  <input
+                                    class="form-control"
+                                    type="date"
+                                    [(ngModel)]="item.maxDate"
+                                  />
+                                </div>
+                              </div>
+                            </fieldset>
+
+                            <fieldset>
+                              <legend>General Validations</legend>
+
+                              <div
+                                class="form-group"
+                                *ngIf="
+                                  item.type == 'button' ||
+                                  item.type == 'button-with-reset'
+                                "
+                              >
+                                <label>Button Sizes</label>
+
+                                <div style="display: flex;">
+                                  <div class="form-group">
+                                    <label>Size</label>
+                                    <i
+                                      *ngIf="item.size"
+                                      (click)="item.size = false"
+                                      class="fa fa-toggle-on red"
+                                    ></i>
+                                    <i
+                                      *ngIf="!item.size"
+                                      (click)="item.size = true"
+                                      class="fa fa-toggle-off"
+                                    ></i>
+                                    <!-- <span class="pull-right ucfirst">{{ item.type }}</span> -->
+                                  </div>
+                                </div>
+                                <hr />
+
+                                <label>Button Styles</label>
+                                <div style="display: flex;">
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="primary"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-primary btn-lg'
+                                          : 'btn btn-primary btn-md'
+                                      "
+                                      name="button"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="primary"
+                                      >Primary</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="secondary"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-secondary btn-lg'
+                                          : 'btn btn-secondary btn-md'
+                                      "
+                                      name="button"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="secondary"
+                                      >Secondary</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="success"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-success btn-lg'
+                                          : 'btn btn-success btn-md'
+                                      "
+                                      name="success"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="success"
+                                      >Success</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="info"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-info btn-lg'
+                                          : 'btn btn-info btn-md'
+                                      "
+                                      name="button"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="info"
+                                      >Info</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="warning"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-warning btn-lg'
+                                          : 'btn btn-warning btn-md'
+                                      "
+                                      name="button"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="warning"
+                                      >Warning</label
+                                    >
+                                  </div>
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="danger"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-danger btn-lg'
+                                          : 'btn btn-danger btn-md'
+                                      "
+                                      name="button"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="danger"
+                                      >Danger</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="dark"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      value="btn btn-dark"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-dark btn-lg'
+                                          : 'btn btn-dark btn-md'
+                                      "
+                                      name="button"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="dark"
+                                      >Dark</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="light"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-light btn-lg'
+                                          : 'btn btn-light btn-md'
+                                      "
+                                      name="button"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="light"
+                                      >Light</label
+                                    >
+                                  </div>
+
+                                  &nbsp; &nbsp;
+                                  <div class="custom-control custom-radio">
+                                    <input
+                                      id="link"
+                                      type="radio"
+                                      class="custom-control-input"
+                                      [value]="
+                                        item.size
+                                          ? 'btn btn-link btn-lg'
+                                          : 'btn btn-link btn-md'
+                                      "
+                                      name="button"
+                                      [(ngModel)]="item.className"
+                                    />
+                                    <label
+                                      class="custom-control-label"
+                                      for="link"
+                                      >Link</label
+                                    >
+                                  </div>
+                                </div>
+                                <hr />
+                              </div>
+
+                              <div class="form-group">
+                                <label>Required</label>
+                                <i
+                                  *ngIf="item.required"
+                                  (click)="item.required = false"
+                                  class="fa fa-toggle-on red"
+                                ></i>
+                                <i
+                                  *ngIf="!item.required"
+                                  (click)="item.required = true"
+                                  class="fa fa-toggle-off"
+                                ></i>
+                                <!-- <span class="pull-right ucfirst">{{ item.type }}</span> -->
+                              </div>
+
+                              <div class="form-group">
+                                <label>Label</label>
+
+                                <div
+                                  class="form-group"
+                                  *ngIf="item.type != 'pre'"
+                                >
+                                  <input
+                                    class="form-control"
+                                    type="text"
+                                    [(ngModel)]="item.label"
+                                  />
+                                </div>
+                                <div
+                                  class="form-group"
+                                  *ngIf="item.type == 'pre'"
+                                >
+                                  <textarea
+                                    class="form-control"
+                                    [(ngModel)]="item.label"
+                                    rows="10"
+                                    cols="90"
+                                  >
+                                  </textarea>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label>Name</label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  disabled
+                                  [(ngModel)]="item.name"
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label>Placeholder</label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  [(ngModel)]="item.placeholder"
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label>Regex</label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  [(ngModel)]="item.regex"
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label>Error text</label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  [(ngModel)]="item.errorText"
+                                />
+                              </div>
+
+                              <!-- number -->
+                              <div *ngIf="item.type == 'number'" class="row">
+                                <div class="col-6">
+                                  <div class="form-group">
+                                    <label>Min</label>
+                                    <input
+                                      class="form-control"
+                                      type="text"
+                                      [(ngModel)]="item.min"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="col-6">
+                                  <div class="form-group">
+                                    <label>Max</label>
+                                    <input
+                                      class="form-control"
+                                      type="text"
+                                      [(ngModel)]="item.max"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- radio || checkbox || autocomplete -->
+                              <div
+                                *ngIf="
+                                  item.type == 'radio' ||
+                                  item.type == 'checkbox' ||
+                                  item.type == 'autocomplete' ||
+                                  item.type == 'datatable-material'
+                                "
+                              >
+                                <div class="row">
+                                  <div class="col-5">
+                                    <div class="form-group">
+                                      <label>Label</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-5">
+                                    <div class="form-group">
+                                      <label>Value</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-2">
+                                    <div class="form-group">
+                                      <label>Action</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  *ngFor="
+                                    let i of item.values;
+                                    let valueIndex = index
+                                  "
+                                  class="row"
+                                >
+                                  <div class="col-5">
+                                    <div class="form-group">
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        [(ngModel)]="i.label"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-5">
+                                    <div class="form-group">
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        [(ngModel)]="i.value"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-2">
+                                    <div class="form-group">
+                                      <label
+                                        (click)="
+                                          item.values.splice(valueIndex, 1)
+                                        "
+                                        >remove</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-5">
+                                    <div class="form-group">
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        [(ngModel)]="value.label"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-5">
+                                    <div class="form-group">
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        [(ngModel)]="value.value"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-2">
+                                    <div class="form-group">
+                                      <label (click)="addValue(item.values)"
+                                        >Add</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </fieldset>
+                          </div>
+                        </div>
+                        <!--optional placeholder element for dropzone-->
+                        <!--will be removed from DOM on init-->
+                        <div class="dndPlaceholder" dndPlaceholderRef></div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">visibility</mat-icon>
+      &nbsp; View
+    </ng-template>
+    <div *ngIf="model" class="container marginT10  marginB10">
+      <div
+        class="row"
+        style="padding:30px;"
+        [style.backgroundColor]="model.theme.bgColor"
+        [style.color]="model.theme.textColor"
+      >
+        <div *ngIf="success" class="col-12">
+          <div class="form-group">
+            <label>Your form has been submitted.</label>
+          </div>
+        </div>
+
+        <form class="ftheme">
+          <div *ngIf="!success" class="col-12">
+            <p style="color: #007bff;">{{ model.name }}</p>
+            <p style="color: #007bff;">{{ model.description }}</p>
+            <mat-tab-group>
+              <mat-tab *ngFor="let tab of model.tabs">
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">arrow_right</mat-icon>
+
+                  {{ tab.header }}
+                </ng-template>
+
+                <!-- Start Container By Assaf -->
+
+                <div
+                  class="panel-group"
+                  id="accordion"
+                  role="tablist"
+                  aria-multiselectable="true"
+                >
+                  <div
+                    *ngFor="let data of tab.accordions; let i = index"
+                    class="panel panel-default"
+                    style="padding:0.2rem 0.2rem"
+                  >
+                    <div
+                      class="panel-heading bg-secondary "
+                      style="padding:0.8rem 0.8rem"
+                      role="tab"
+                      [id]="'heading' + data.id"
+                    >
+                      <div class="row">
+                        <div class="col-11">
+                          <h4>
+                            <a
+                              style="text-decoration: none;"
+                              role="button"
+                              class="text-white panel-title"
+                              data-toggle="collapse"
+                              data-parent="#accordion"
+                              [href]="'#collapse' + data.id"
+                              aria-expanded="true"
+                              [attr.aria-controls]="'collapse' + data.id"
+                            >
+                              {{ data.header }}
+                            </a>
+                          </h4>
+                        </div>
+                        <div class="col-1"></div>
+                      </div>
+                    </div>
+                    <div
+                      [id]="'collapse' + data.id"
+                      class="panel-collapse collapse"
+                      role="tabpanel"
+                      [attr.aria-labelledby]="'heading' + data.id"
+                    >
+                      <div class="panel-body">
+                        <div
+                          *ngFor="let item of data.fields; let i = index"
+                          class="form-group panel-body"
+                        >
+                          <div *ngIf="item.type == 'hr'">
+                            <hr
+                              style="background-color: #ccc; height: 1px  ;"
+                              [attr.relatedTo]="item.relatedTo"
+                            />
+                          </div>
+
+                          <div *ngIf="item.type == 'h1'">
+                            <h1
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </h1>
+                          </div>
+
+                          <div *ngIf="item.type == 'h2'">
+                            <h2
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </h2>
+                          </div>
+                          <div *ngIf="item.type == 'h3'">
+                            <h3
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </h3>
+                          </div>
+                          <div *ngIf="item.type == 'h4'">
+                            <h4
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </h4>
+                          </div>
+                          <div *ngIf="item.type == 'h5'">
+                            <h5
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </h5>
+                          </div>
+                          <div *ngIf="item.type == 'h6'">
+                            <h6
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </h6>
+                          </div>
+
+                          <div *ngIf="item.type == 'paragraph'">
+                            <p
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </p>
+                          </div>
+
+                          <div *ngIf="item.type == 'pre'">
+                            <pre
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                              >{{ item.label }}</pre
+                            >
+                          </div>
+
+                          <div *ngIf="item.type == 'quote'">
+                            <q
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                              >{{ item.label }}</q
+                            >
+                          </div>
+
+                          <div *ngIf="item.type == 'bQuote'">
+                            <blockquote
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </blockquote>
+                          </div>
+
+                          <div *ngIf="item.type == 'span'">
+                            <span
+                              class="form-text"
+                              [attr.relatedTo]="item.relatedTo"
+                            >
+                              {{ item.label }}
+                            </span>
+                          </div>
+
+                          <div *ngIf="item.type == 'text'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ item.name }}"
+                              name="{{ item.name }}"
+                              placeholder="{{ item.placeholder }}"
+                              [(ngModel)]="item.value"
+                              [required]="item.required"
+                              [ngModelOptions]="{ standalone: true }"
+                              autocomplete="off"
+                              [attr.relatedTo]="item.relatedTo"
+                            />
+                          </div>
+                          <div *ngIf="item.type == 'email'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="{{ item.name }}"
+                              placeholder="{{ item.placeholder }}"
+                              [(ngModel)]="item.value"
+                              [ngModelOptions]="{ standalone: true }"
+                              autocomplete="off"
+                              [attr.relatedTo]="item.relatedTo"
+                              [required]="item.required"
+                            />
+                          </div>
+                          <div *ngIf="item.type == 'phone'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <input
+                              type="tel"
+                              class="form-control"
+                              id="{{ item.name }}"
+                              placeholder="{{ item.placeholder }}"
+                              [(ngModel)]="item.value"
+                              [ngModelOptions]="{ standalone: true }"
+                              autocomplete="off"
+                              [attr.relatedTo]="item.relatedTo"
+                              [required]="item.required"
+                            />
+                          </div>
+                          <div *ngIf="item.type == 'number'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <input
+                              type="number"
+                              Number="true"
+                              class="form-control"
+                              id="{{ item.name }}"
+                              min="{{ item.min }}"
+                              max="{{ item.max }}"
+                              placeholder="{{ item.placeholder }}"
+                              [(ngModel)]="item.value"
+                              [ngModelOptions]="{ standalone: true }"
+                              autocomplete="off"
+                              [attr.relatedTo]="item.relatedTo"
+                              [required]="item.required"
+                            />
+                          </div>
+                          <div *ngIf="item.type == 'date'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <input
+                              [bsConfig]="bsConfig"
+                              bsDatepicker
+                              readonly
+                              class="form-control"
+                              id="{{ item.name }}"
+                              [(ngModel)]="item.value"
+                              [ngModelOptions]="{ standalone: true }"
+                              autocomplete="off"
+                              [attr.relatedTo]="item.relatedTo"
+                              [required]="item.required"
+                            />
+                          </div>
+                          <div *ngIf="item.type == 'datetime-range'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <input
+                              [bsConfig]="bsConfig"
+                              bsDaterangepicker
+                              class="form-control"
+                              id="{{ item.name }}"
+                              placeholder="{{ item.placeholder }}"
+                              [(ngModel)]="item.value"
+                              [ngModelOptions]="{ standalone: true }"
+                              autocomplete="off"
+                              [attr.relatedTo]="item.relatedTo"
+                              [required]="item.required"
+                            />
+                          </div>
+                          <div *ngIf="item.type == 'textarea'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <textarea
+                              class="form-control"
+                              id="{{ item.name }}"
+                              placeholder="{{ item.placeholder }}"
+                              [(ngModel)]="item.value"
+                              [ngModelOptions]="{ standalone: true }"
+                              autocomplete="off"
+                              [attr.relatedTo]="item.relatedTo"
+                              [required]="item.required"
+                            >
+                            </textarea>
+                          </div>
+                          <div *ngIf="item.type == 'file'">
+                            <label
+                              >{{ item.label }} (File can't be uploaded right
+                              now)</label
+                            >
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <input
+                              type="file"
+                              class="form-control"
+                              id="{{ item.name }}"
+                              placeholder="{{ item.placeholder }}"
+                              [(ngModel)]="item.value"
+                              [ngModelOptions]="{ standalone: true }"
+                              autocomplete="off"
+                              [attr.relatedTo]="item.relatedTo"
+                              [required]="item.required"
+                            />
+                            <small class="form-text text-danger"
+                              >(File can't be uploaded right now)</small
+                            >
+                          </div>
+
+                          <div *ngIf="item.type == 'autocomplete'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <select
+                              class="form-control"
+                              id="{{ item.name }}"
+                              [(ngModel)]="item.value"
+                              [ngModelOptions]="{ standalone: true }"
+                              [attr.relatedTo]="item.relatedTo"
+                              [required]="item.required"
+                            >
+                              <option
+                                *ngFor="let v of item.values"
+                                [value]="v.value"
+                                >{{ v.label }}</option
+                              >
+                            </select>
+                            <!-- <small class="form-text text-muted">{{item.description}}</small> -->
+                          </div>
+                          <div *ngIf="item.type == 'checkbox'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <div
+                              *ngFor="let v of item.values"
+                              class="inline-form-group"
+                            >
+                              <label class="cust-check-bx">
+                                <input
+                                  type="checkbox"
+                                  [value]="v.value"
+                                  name="{{ item.name }}"
+                                  (click)="toggleValue(v)"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                                {{ v.label }}
+                                <span class="checkmark"></span>
+                              </label>
+                            </div>
+                          </div>
+                          <div *ngIf="item.type == 'radio'">
+                            <label>{{ item.label }}</label>
+                            <label *ngIf="item.required" class="text-danger"
+                              >*</label
+                            >
+                            <div
+                              *ngFor="let v of item.values"
+                              class="inline-form-group"
+                            >
+                              <label class="cust-check-bx">
+                                <input
+                                  type="radio"
+                                  [value]="v.value"
+                                  name="{{ item.name }}"
+                                  [(ngModel)]="item.value"
+                                  [ngModelOptions]="{ standalone: true }"
+                                  [attr.relatedTo]="item.relatedTo"
+                                />
+                                {{ v.label }}
+                                <span class="checkmark"></span>
+                              </label>
+                            </div>
+                          </div>
+                          <div
+                            *ngIf="item.type == 'button'"
+                            class="btn-cont text-center"
+                          >
+                            <input
+                              type="{{ item.subtype }}"
+                              (click)="submit(item)"
+                              value="{{ item.label }}"
+                              class="{{ item.className }}"
+                              id="{{ item.name }}"
+                              [attr.relatedTo]="item.relatedTo"
+                            />
+                          </div>
+
+                          <div
+                            *ngIf="item.type == 'button-with-reset'"
+                            class="btn-cont text-center"
+                          >
+                            <input
+                              type="{{ item.subtype }}"
+                              (click)="submit(item)"
+                              value="{{ item.label }}"
+                              class="{{ item.className }}"
+                              id="{{ item.name }}"
+                              [attr.relatedTo]="item.relatedTo"
+                            />
+                            &nbsp;
+                            <input
+                              type="{{ item.nestedtype }}"
+                              value="{{ item.sublabel }}"
+                              class="btn btn-success"
+                              id="{{ item.name }}"
+                              [attr.relatedTo]="item.relatedTo"
+                            />
+                          </div>
+
+                          <div *ngIf="item.type == 'text-material'">
+                            <mat-form-field
+                              class="example-full-width"
+                              [hideRequiredMarker]="item.hideRequiredMarker"
+                              [appearance]="item.appearance"
+                              [hintLabel]="item.hintLabel"
+                            >
+                              <input
+                                matInput
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-icon matSuffix>title</mat-icon>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'text-length-material'">
+                            <mat-form-field
+                              class="example-full-width"
+                              [hideRequiredMarker]="item.hideRequiredMarker"
+                              [appearance]="item.appearance"
+                              [hintLabel]="item.hintLabel"
+                            >
+                              <input
+                                matInput
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [maxlength]="item.maxLength"
+                                #template
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-hint align="end"
+                                >{{ template.value.length }} /
+                                {{ item.maxLength }}</mat-hint
+                              >
+                              <mat-icon matSuffix>lock</mat-icon>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'textarea-material'">
+                            <mat-form-field
+                              class="example-full-width"
+                              [hideRequiredMarker]="item.hideRequiredMarker"
+                              [appearance]="item.appearance"
+                              [hintLabel]="item.hintLabel"
+                            >
+                              <textarea
+                                matInput
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              ></textarea>
+                              <mat-icon matSuffix>text_fields</mat-icon>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'textarea-length-material'">
+                            <mat-form-field
+                              class="example-full-width"
+                              [hideRequiredMarker]="item.hideRequiredMarker"
+                              [appearance]="item.appearance"
+                              [hintLabel]="item.hintLabel"
+                            >
+                              <textarea
+                                matInput
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [maxlength]="item.maxLength"
+                                #template
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              ></textarea>
+                              <mat-hint align="end"
+                                >{{ template.value.length }} /
+                                {{ item.maxLength }}</mat-hint
+                              >
+                              <mat-icon matSuffix>lock</mat-icon>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'email-material'">
+                            <mat-form-field
+                              class="example-full-width"
+                              [hideRequiredMarker]="item.hideRequiredMarker"
+                              [appearance]="item.appearance"
+                              [hintLabel]="item.hintLabel"
+                            >
+                              <input
+                                matInput
+                                type="email"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-icon matSuffix>email</mat-icon>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'phone-material'">
+                            <mat-form-field
+                              class="example-full-width"
+                              [hideRequiredMarker]="item.hideRequiredMarker"
+                              [appearance]="item.appearance"
+                              [hintLabel]="item.hintLabel"
+                            >
+                              <input
+                                matInput
+                                type="tel"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-icon matSuffix>phone</mat-icon>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'number-material'">
+                            <mat-form-field
+                              class="example-full-width"
+                              [hideRequiredMarker]="item.hideRequiredMarker"
+                              [appearance]="item.appearance"
+                              [hintLabel]="item.hintLabel"
+                            >
+                              <input
+                                matInput
+                                Number="true"
+                                type="number"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                              />
+                              <mat-icon matSuffix>filter_9_plus</mat-icon>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'clearable-material'">
+                            <mat-form-field
+                              class="example-full-width"
+                              [hideRequiredMarker]="item.hideRequiredMarker"
+                              [appearance]="item.appearance"
+                              [hintLabel]="item.hintLabel"
+                            >
+                              <input
+                                matInput
+                                type="text"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <button
+                                mat-button
+                                *ngIf="item.value"
+                                matSuffix
+                                mat-icon-button
+                                aria-label="Clear"
+                                (click)="item.value = ''"
+                              >
+                                <mat-icon>close</mat-icon>
+                              </button>
+                              <mat-icon matSuffix>clear_all</mat-icon>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'basic-datepicker-material'">
+                            <mat-form-field class="example-full-width">
+                              <input
+                                matInput
+                                [matDatepicker]="picker"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker"
+                              ></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div
+                            *ngIf="
+                              item.type == 'start-date-datepicker-material'
+                            "
+                          >
+                            <mat-form-field class="example-full-width">
+                              <input
+                                matInput
+                                [matDatepicker]="picker"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker"
+                              ></mat-datepicker-toggle>
+                              <mat-datepicker
+                                #picker
+                                startView="year"
+                                [startAt]="startDate"
+                              ></mat-datepicker>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div
+                            *ngIf="
+                              item.type ==
+                              'min-max-validation-datepicker-material'
+                            "
+                          >
+                            <mat-form-field class="example-full-width">
+                              <input
+                                matInput
+                                [matDatepicker]="picker"
+                                [min]="item.minDate"
+                                [max]="item.maxDate"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker"
+                              ></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div
+                            *ngIf="
+                              item.type == 'touch-ui-date-datepicker-material'
+                            "
+                          >
+                            <mat-form-field class="example-full-width">
+                              <input
+                                matInput
+                                [matDatepicker]="picker"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker"
+                              ></mat-datepicker-toggle>
+                              <mat-datepicker touchUi #picker></mat-datepicker>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div
+                            *ngIf="
+                              item.type ==
+                              'open-method-date-datepicker-material'
+                            "
+                          >
+                            <mat-form-field class="example-full-width">
+                              <input
+                                matInput
+                                [matDatepicker]="picker"
+                                id="{{ item.name }}"
+                                name="{{ item.name }}"
+                                placeholder="{{ item.placeholder }}"
+                                [(ngModel)]="item.value"
+                                [required]="item.required"
+                                [ngModelOptions]="{ standalone: true }"
+                                autocomplete="off"
+                                [attr.relatedTo]="item.relatedTo"
+                                [pattern]="item.regex"
+                              />
+                              <mat-datepicker #picker></mat-datepicker>
+                              <button
+                                class="float-right"
+                                mat-raised-button
+                                (click)="picker.open()"
+                              >
+                                Open
+                              </button>
+                              <mat-error>{{ item.errorText }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div *ngIf="item.type == 'datatable-material'">
+                            <table
+                              mat-table
+                              [dataSource]="dataSource"
+                              matSort
+                            >
+                              <ng-container
+                                *ngFor="let column of returnColumns(item)"
+                                matColumnDef="{{ column.value }}"
+                              >
+                                <th
+                                  mat-header-cell
+                                  *matHeaderCellDef
+                                  mat-sort-header
+                                >
+                                  {{ column.label }}
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                  {{ element[column.value] }}
+                                </td>
+                              </ng-container>
+
+                              <tr
+                                mat-header-row
+                                *matHeaderRowDef="displayedColumns"
+                              ></tr>
+                              <tr
+                                mat-row
+                                *matRowDef="
+                                  let row;
+                                  columns: displayedColumns
+                                "
+                              ></tr>
+                            </table>
+
+                            <mat-paginator
+                              [pageSizeOptions]="[5, 10, 20]"
+                              showFirstLastButtons
+                            ></mat-paginator>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Container by Assaf -->
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">sort</mat-icon>
+      &nbsp; JSON
+    </ng-template>
+
+    <hr />
+    <button class="btn btn-secondary   btn-block" (click)="copy(model)">
+      Copy JSON Created
+    </button>
+    <hr />
+    <pre style="display: none;">
+      {{ model | json }}
+    </pre>
+    <ngx-json-viewer [json]="model" style="font-size: 12px;"></ngx-json-viewer>
+  </mat-tab>
+</mat-tab-group>
+
+<!-- Modal Rename Occordion-->
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="occordionHeaderValue"
+        />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="editHeader()"
+          data-dismiss="modal"
+          [disabled]="occordionHeaderValue == ''"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Rename Tabs -->
+<div
+  class="modal fade"
+  id="exampleModalCenterTab"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitleTab"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitleTab">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="tabHeaderValue" />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="editTab()"
+          [disabled]="tabHeaderValue == ''"
+          data-dismiss="modal"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
